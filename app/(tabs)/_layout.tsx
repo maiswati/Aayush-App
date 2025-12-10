@@ -1,33 +1,65 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+import { Tabs } from "expo-router";
+import { Text } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { FONTS } from "../theme/fonts";
+export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+        tabBarActiveTintColor: "#00AA5D",
+
+
+        sceneStyle: {
+          backgroundColor: "white",
+        },
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+tabBarLabel: ({ focused, color }) => (
+      <Text style={{ fontFamily: FONTS.bold, color: color, fontSize: 12 }}>
+        Home
+      </Text>
+    ),          tabBarIcon: ({ color, size }) =>
+            <Ionicons name="home-outline" size={size} color={color} />
         }}
       />
+
       <Tabs.Screen
-        name="explore"
+        name="search"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+tabBarLabel: ({ focused, color }) => (
+      <Text style={{ fontFamily: FONTS.bold, color: color, fontSize: 12 }}>
+        Search
+      </Text>
+    ),          tabBarIcon: ({ color, size }) =>
+            <Ionicons name="search-outline" size={size} color={color} />
+        }}
+      />
+
+      <Tabs.Screen
+        name="appointment"
+        options={{
+tabBarLabel: ({ focused, color }) => (
+      <Text style={{ fontFamily: FONTS.bold, color: color, fontSize: 12 }}>
+        Appointment
+      </Text>
+    ),          tabBarIcon: ({ color, size }) =>
+            <Ionicons name="calendar-outline" size={size} color={color} />
+        }}
+      />
+
+      <Tabs.Screen
+        name="profile"
+        options={{
+tabBarLabel: ({ focused, color }) => (
+      <Text style={{ fontFamily: FONTS.bold, color: color, fontSize: 12 }}>
+        Profile
+      </Text>
+    ),          tabBarIcon: ({ color, size }) =>
+            <Ionicons name="person-outline" size={size} color={color} />
         }}
       />
     </Tabs>
